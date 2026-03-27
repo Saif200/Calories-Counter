@@ -29,7 +29,8 @@
     --font-mono: 'JetBrains Mono', monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-body); overflow: hidden; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden;
+  overflow-y: auto; }
   
   /* APP SHELL */
   #app { display: flex; flex-direction: column; height: 100vh; height: -webkit-fill-available; }
@@ -137,6 +138,9 @@
     font-family: var(--font-body); font-size: 14px; font-weight: 600;
     cursor: pointer; transition: opacity .2s, transform .1s; width: 100%;
     margin-top: 10px;
+    position: sticky;
+    bottom: 10px;
+    z-index: 10;
   }
   .btn:active { transform: scale(0.97); opacity: .85; }
   .btn-primary { background: var(--accent); color: #0a0f16; }
@@ -216,14 +220,14 @@
 
   /* ONBOARDING */
   #onboarding {
-    position: fixed; inset: 0; background: var(--bg); z-index: 9999;
+    position: fixed; inset: 0; overflow-y: auto; background: var(--bg); z-index: 9999;
     display: flex; flex-direction: column; justify-content: center;
     padding: 40px 28px; animation: fadeIn .4s ease;
   }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .ob-logo { font-family: var(--font-head); font-size: 52px; color: var(--accent); letter-spacing: 4px; margin-bottom: 8px; }
   .ob-sub { font-size: 15px; color: var(--muted); margin-bottom: 36px; }
-  .ob-step { display: none; }
+  .ob-step { display: none; padding-bottom: 100px; }
   .ob-step.active { display: block; }
 
   /* TOAST */
@@ -282,6 +286,26 @@
   @media (min-width: 500px) {
     #app { max-width: 430px; margin: 0 auto; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
   }
+  @media (max-height: 700px) {
+  .ob-logo {
+    font-size: 36px;
+  }
+
+  .ob-sub {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  input, select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
 </style>
 </head>
 <body>
